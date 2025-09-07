@@ -21,6 +21,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
       
+      - name: Debug token
+        run: echo "${{ secrets.PAT_TEST }}"
+
       - name: Merge and sync repository
         run: |
           git fetch private
