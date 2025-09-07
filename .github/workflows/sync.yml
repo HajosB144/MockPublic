@@ -18,7 +18,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@email.com'
           git remote add private https://github.com/HajosB144/MockPrivate.git
-        env:
+        #env:
           #GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
       
       - name: Merge and sync repository
