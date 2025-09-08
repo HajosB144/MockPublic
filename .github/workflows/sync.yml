@@ -22,18 +22,9 @@ jobs:
         env:
             PAT_TEST: ${{ secrets.PAT_TEST }}
           
-      - name: Hash test
-        run: |
-          echo -n "${{ secrets.PAT_TEST }}" | sha256sum
-          echo -n $(git remote get-url private)
-          echo -n $(git remote get-url private) | sha256sum
 
       - name: Merge and sync repository
         run: |
           git fetch private
           #git merge private/main -X ours -m "Sync from public repository"
           #git push private main
-        env:
-          GIT_ASKPASS: echo
-          GIT_USERNAME: x-access-token
-          GIT_PASSWORD: ${{ secrets.PAT_TEST }}
