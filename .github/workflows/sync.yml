@@ -27,4 +27,6 @@ jobs:
           git merge private/main -X ours -m "Sync from public repository"
           git -c url."https://x-access-token:${PAT_TEST}@github.com/".insteadOf="https://github.com/" push private main
         env:
-          PAT_TEST: ${{ secrets.PAT_TEST }}
+          GIT_ASKPASS: echo
+          GIT_USERNAME: x-access-token
+          GIT_PASSWORD: ${{ secrets.PAT_TEST }}
