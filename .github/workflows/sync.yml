@@ -18,13 +18,13 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@email.com'
           git remote add private https://github.com/HajosB144/MockPrivate.git
-          git remote set-url private https://x-access-token:${PAT_TEST}@github.com/HajosB144/MockPrivate.git
-          # git remote -v
         env:
           PAT_TEST: ${{ secrets.PAT_TEST }}
       
       - name: Merge and sync repository
         run: |
-          git fetch private
-          git merge private/main -X ours -m "Sync from public repository" # -X sets the merge strategy
-          git push private main
+          git -c url."https://x-access-token:${PAT_TEST}@github.com/".insteadOf="https://github.com/" fetch private
+          git merge private/main -X ours -m "Sync from public repository"
+          git -c url."https://x-access-token:${PAT_TEST}@github.com/".insteadOf="https://github.com/" push private main
+        env:
+          PAT_TEST: ${{ secrets.PAT_TEST }}
