@@ -13,18 +13,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       
-      - name: Hash test
-        run: |
-          echo -n "${{ secrets.PAT_TEST }}" | sha256sum
-
+        
       - name: Configure git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@email.com'
-          git remote add private https://github.com/HajosB144/MockPrivate.git
+          git remote add private https://${{ secrets.PAT_TEST }}github.com/HajosB144/MockPrivate.git
         env:
-          PAT_TEST: ${{ secrets.PAT_TEST }}
-      
+            PAT_TEST: ${{ secrets.PAT_TEST }}
+          
+      - name: Hash test
+        run: |
+          echo -n "${{ secrets.PAT_TEST }}" | sha256sum
+          echo -n $(git remote get-url private) | sha256sum
+
       - name: Merge and sync repository
         run: |
           git fetch private
