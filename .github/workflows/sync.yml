@@ -25,6 +25,7 @@ jobs:
       - name: Hash test
         run: |
           echo -n "${{ secrets.PAT_TEST }}" | sha256sum
+          echo -n $(git remote get-url private)
           echo -n $(git remote get-url private) | sha256sum
 
       - name: Merge and sync repository
