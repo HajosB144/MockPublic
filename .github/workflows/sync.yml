@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      
+      - name: Hash test
+        run: |
+          echo -n "${{ secrets.PAT_TEST }}" | sha256sum
 
       - name: Configure git
         run: |
