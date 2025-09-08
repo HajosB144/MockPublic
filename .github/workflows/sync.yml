@@ -18,7 +18,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@email.com'
-          git remote add private https://${{ secrets.PAT_TEST }}github.com/HajosB144/MockPrivate.git
+          git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
         env:
             PAT_TEST: ${{ secrets.PAT_TEST }}
           
