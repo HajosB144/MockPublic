@@ -23,9 +23,9 @@ jobs:
       
       - name: Merge and sync repository
         run: |
-          git -c url."https://x-access-token:${PAT_TEST}@github.com/".insteadOf="https://github.com/" fetch private
+          git fetch private
           git merge private/main -X ours -m "Sync from public repository"
-          git -c url."https://x-access-token:${PAT_TEST}@github.com/".insteadOf="https://github.com/" push private main
+          git push private main
         env:
           GIT_ASKPASS: echo
           GIT_USERNAME: x-access-token
