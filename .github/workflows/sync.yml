@@ -17,10 +17,11 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@email.com'
-          git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
-          git remote -v
+          git remote add private https://github.com/HajosB144/MockPrivate.git
+          git remote set-url private https://x-access-token:${PAT_TEST}@github.com/HajosB144/MockPrivate.git
+          # git remote -v
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
+          PAT_TEST: ${{ secrets.PAT_TEST }}
       
       - name: Merge and sync repository
         run: |
