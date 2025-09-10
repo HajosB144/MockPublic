@@ -27,6 +27,6 @@ jobs:
       - name: Merge and sync repository
         run: |
           git fetch public
-          #git merge private/main -X ours -m "Sync from public repository"
-          #git push private main
+          git merge public/main -X theirs -m "Sync from public repository"
+          git push origin main
         
