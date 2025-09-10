@@ -12,18 +12,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          repository: HajosB144/MockPrivate
+          token: ${{ secrets.PAT_TEST }}  
       
         
       - name: Configure git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@email.com'
-          git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
+          git remote add public https://github.com/HajosB144/MockPublic.git
           
 
       - name: Merge and sync repository
         run: |
-          git fetch private -v
+          git fetch public
           #git merge private/main -X ours -m "Sync from public repository"
           #git push private main
         
