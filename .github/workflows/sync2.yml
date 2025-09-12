@@ -15,11 +15,11 @@ jobs:
         run: |
             git config --global user.name 'github-actions[bot]'
             git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-            git clone https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
-            cd MockPrivate
-            git remote add public https://github.com/HajosB144/MockPublic.git
+            git clone https://github.com/HajosB144/MockPublic.git
+            cd MockPublic
+            git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
             git remote update
-            git merge public/main -X theirs -m "Sync from public repository"
+            git merge private/main -X theirs -m "Sync from public repository"
             git push origin main
         env:
             GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
