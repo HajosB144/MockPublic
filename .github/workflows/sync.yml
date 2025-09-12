@@ -3,7 +3,7 @@ name: Sync
 on:
   push:
     branches:
-      - mai
+      - main
 
 jobs:
   sync:

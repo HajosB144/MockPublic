@@ -3,7 +3,7 @@ name: Sync2
 on:
   push:
     branches:
-      - main
+      - mai
 
 jobs:
   sync:
