@@ -20,7 +20,7 @@ jobs:
       - name: Configure git
         run: |
           git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@email.com'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git remote add public https://github.com/HajosB144/MockPublic.git
           
 
