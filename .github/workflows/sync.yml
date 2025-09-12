@@ -21,5 +21,3 @@ jobs:
             git remote update
             git merge private/main -X ours -m "Sync from public repository"
             git push private main
-        env:
-            GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
