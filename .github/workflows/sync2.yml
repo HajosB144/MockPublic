@@ -3,7 +3,7 @@ name: Sync2
 on:
   push:
     branches:
-      - mai
+      - main
 
 jobs:
   sync:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
 
-      - name: Push to destination repository
+      - name: Sync with private repository
         run: |
             git config --global user.name 'github-actions[bot]'
             git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -19,7 +19,7 @@ jobs:
             cd MockPublic
             git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
             git remote update
-            git merge private/main -X theirs -m "Sync from public repository"
+            git merge private/main -X ours -m "Sync from public repository"
             git push origin main
         env:
             GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
