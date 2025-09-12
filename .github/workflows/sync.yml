@@ -10,23 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+
       - name: Checkout repository
-        uses: actions/checkout@v5
-        with:
-          repository: HajosB144/MockPrivate
-          token: ${{ secrets.PAT_TEST }}  
-      
-        
+        run: |
+          git clone https://github.com/HajosB144/MockPublic.git
+          cd MockPublic
+           
       - name: Configure git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote add public https://github.com/HajosB144/MockPublic.git
-          
-
+          git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
+      
       - name: Merge and sync repository
         run: |
-          git fetch public
-          git merge public/main -X theirs -m "Sync from public repository"
-          git push origin main
+          git fetch private
+          git merge private/main -X ours -m "Sync from public repository"
+          git push private main
         
