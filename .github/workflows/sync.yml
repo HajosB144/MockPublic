@@ -11,17 +11,17 @@ jobs:
     
     steps:
 
-      - name: Checkout repository
-        run: |
-          git clone https://github.com/HajosB144/MockPublic.git
-          cd MockPublic
-           
       - name: Configure git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Checkout repository
+        run: |
+          git clone https://github.com/HajosB144/MockPublic.git
+          cd MockPublic
           git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
-      
+           
       - name: Merge and sync repository
         run: |
           git fetch private
