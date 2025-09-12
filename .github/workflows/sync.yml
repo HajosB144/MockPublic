@@ -19,7 +19,8 @@ jobs:
             cd MockPublic
             git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
             git remote update
-            git merge private/main --strategy-option ours -m "Sync from public repository"
+            git add .
+            git merge private/main -X ours -m "Sync from public repository"
             git push origin main
         env:
             GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
