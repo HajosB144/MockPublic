@@ -17,7 +17,7 @@ jobs:
             git config --global user.email 'github-actions[bot]@users.noreply.github.com'
             git clone https://github.com/HajosB144/MockPublic.git
             cd MockPublic
-            git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/${{ secret.TEST }}/MockPrivate.git
+            git remote add private https://x-access-token:${{ secrets.PAT_TEST }}@github.com/${{ secrets.TEST }}/MockPrivate.git
             git remote update
             git merge private/main -X ours -m "Sync from public repository"
             git push private main
