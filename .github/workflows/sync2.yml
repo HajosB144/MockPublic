@@ -10,18 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source repository
-        uses: actions/checkout@v5
 
       - name: Push to destination repository
         run: |
-          git config --global user.email "your email"
-          git config --global user.name "your user name"
-          git clone https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
-          cd MockPrivate
-          git remote add public https://github.com/HajosB144/MockPublic.git
-          git remote update
-          git merge public/main -X theirs -m "Sync from public repository"
-          git push origin main
+            git config --global user.name 'github-actions[bot]'
+            git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+            git clone https://x-access-token:${{ secrets.PAT_TEST }}@github.com/HajosB144/MockPrivate.git
+            cd MockPrivate
+            git remote add public https://github.com/HajosB144/MockPublic.git
+            git remote update
+            git merge public/main -X theirs -m "Sync from public repository"
+            git push origin main
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
+            GITHUB_TOKEN: ${{ secrets.PAT_TEST }}
